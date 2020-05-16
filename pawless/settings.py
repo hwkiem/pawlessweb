@@ -29,7 +29,7 @@ if os.getenv('DEBUG_VALUE') == 'True':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['pawlessprint.herokuapp.com']
+ALLOWED_HOSTS = ['pawlessprint.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -162,4 +162,4 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 # Managing Heroku Settings
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
