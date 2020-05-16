@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 if os.getenv('DEBUG_VALUE') == 'True':
     DEBUG = True
 else:
-    DEBUG = False
+    DEBUG = True
 
 ALLOWED_HOSTS = ['pawlessprint.herokuapp.com']
 
