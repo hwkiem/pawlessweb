@@ -17,13 +17,6 @@ from .models import Post
 import os
 
 
-# def home(request):
-#     context = {
-#         'posts': Post.objects.all()
-#     }
-#     return render(request, 'feed/feed.html', context)
-
-
 class PostListView(ListView):
     model = Post
     template_name = 'feed/feed.html'
