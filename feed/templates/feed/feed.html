@@ -17,6 +17,13 @@
       >
     </h2>
     <p class="article-content">{{ post.content }}</p>
+    <a
+      href="{{ post.print_file.url }}"
+      class="btn btn-primary btn-sm"
+      target="_blank"
+    >
+      Download
+    </a>
   </div>
 </article>
 {% endfor %} {% endblock content %}
