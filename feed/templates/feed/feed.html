@@ -6,7 +6,7 @@
   />
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2" href="{% url 'user-posts' post.author.username %}"
+      <a class="mr-2" href="{% url 'user-posts' post.author.username 0%}"
         >{{ post.author }}</a
       >
       <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
@@ -24,7 +24,7 @@
     >
       Download
     </a>
-    <a href="{% url 'post-file' object.id %}" class="btn btn-primary btn-sm">
+    <a href="{% url 'post-file' post.id %}" class="btn btn-primary btn-sm">
       View File
     </a>
   </div>
