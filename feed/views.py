@@ -14,13 +14,14 @@ from django.views.generic import (
 )
 from .forms import PostForm
 from .models import Post
+import os
 
 
-def home(request):
-    context = {
-        'posts': Post.objects.all()
-    }
-    return render(request, 'feed/feed.html', context)
+# def home(request):
+#     context = {
+#         'posts': Post.objects.all()
+#     }
+#     return render(request, 'feed/feed.html', context)
 
 
 class PostListView(ListView):
@@ -52,7 +53,9 @@ def userpostview(request, username, postnum):
     user = get_object_or_404(User, username=username)
     posts = Post.objects.filter(author=user).order_by('-date_posted')
     curr = posts[postnum]
-    return render(request, 'feed/file_view.html', {'file': curr.print_file})
+    f = curr.print_file
+    filename, filetype = os.path.splitext(f.name)
+    return render(request, 'feed/file_view.html', {'file': f, 'title': 'preview', 'ext': filetype})
 
 
 class PostDetailView(DetailView):
@@ -61,7 +64,9 @@ class PostDetailView(DetailView):
 
 def fileview(request, pk):
     post = Post.objects.get(pk=pk)
-    return render(request, 'feed/file_view.html', {'file': post.print_file})
+    f = post.print_file
+    filename, filetype = os.path.splitext(f.name)
+    return render(request, 'feed/file_view.html', {'file': f, 'title': 'preview', 'ext': filetype})
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
