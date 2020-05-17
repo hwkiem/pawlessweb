@@ -9,7 +9,8 @@ from .views import (
 from . import views
 
 urlpatterns = [
-    path('', PostListView.as_view(), name='feed-home'),
+    path('full/', PostListView.as_view(), name='feed-full'),
+    path('', views.curuser_redirectlist, name='feed-home'),
     path('user/<str:username>/<int:postnum>/',
          UserPostListView.as_view(), name='user-posts'),
     path('user/<str:username>/<int:postnum>/view/',

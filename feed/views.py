@@ -24,6 +24,11 @@ class PostListView(ListView):
     ordering = ['-date_posted']
 
 
+def curuser_redirectlist(request):
+    cur_user = request.user
+    return redirect('user-posts', cur_user.username, 0)
+
+
 class UserPostListView(ListView):
     model = Post
     template_name = 'feed/user_posts.html'
