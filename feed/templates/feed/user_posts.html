@@ -1,6 +1,6 @@
 {% extends "core/base.html" %} {% block content %}
 <h1 class="mb-3">
-  Posts by {{ view.kwargs.username }}
+  Posts by {{ view.kwargs.username }} ({{posts|length}})
 </h1>
 {% for post in posts %}
 <article class="media content-section">

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.staticfiles import finders
 from django.http import FileResponse
@@ -36,7 +37,17 @@ class UserPostListView(ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
-        return Post.objects.filter(author=user).order_by('-date_posted')
+        posts = Post.objects.filter(author=user).order_by('-date_posted')
+        return posts
+
+    def dispatch(self, request, *args, **kwargs):
+        posts = self.get_queryset()
+        print(len(posts))
+        print(kwargs)
+        if len(posts) < kwargs.get('postnum'):
+            return redirect('user-posts', kwargs.get('username'), len(posts))
+        else:
+            return super(UserPostListView, self).dispatch(request, *args, **kwargs)
 
 
 class PostDetailView(DetailView):
