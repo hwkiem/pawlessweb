@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
+from django.contrib.staticfiles import finders
+from django.http import FileResponse
 from django.views.generic import (
     ListView,
     DetailView,
@@ -39,6 +41,15 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+
+def fileview(request, pk):
+    post = Post.objects.get(pk=pk)
+    filename = post.print_file.name.split('/')[-1]
+    response = FileResponse(post.print_file.read(),
+                            content_type='application/pdf')
+    # return response
+    return render(request, 'feed/file_view.html', {'file': post.print_file})
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
