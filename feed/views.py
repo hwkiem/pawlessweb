@@ -35,6 +35,7 @@ class UserPostListView(ListView):
     template_name = 'feed/user_posts.html'
     context_object_name = 'posts'
 
+    # Returns posts for provided user (/user/<username>/0/)
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         posts = Post.objects.filter(author=user).order_by('-date_posted')
@@ -42,8 +43,6 @@ class UserPostListView(ListView):
 
     def dispatch(self, request, *args, **kwargs):
         posts = self.get_queryset()
-        print(len(posts))
-        print(kwargs)
         if len(posts) < kwargs.get('postnum'):
             return redirect('user-posts', kwargs.get('username'), len(posts))
         else:
@@ -86,3 +85,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'feed/about.html', {'title': 'About'})
+
+
+def client(request):
+    return render(request, 'feed/client.html', {'title': 'Client'})
