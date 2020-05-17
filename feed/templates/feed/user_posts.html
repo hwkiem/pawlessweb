@@ -2,21 +2,19 @@
 <h1 class="mb-3">
   Posts by {{ view.kwargs.username }} ({{posts|length}})
 </h1>
-{% for post in posts %}
-<article class="media content-section">
+{% for post in posts %} {% if forloop.counter == view.kwargs.postnum %}
+<article class="media content-section" style="border-color: red;">
   <img
     class="rounded-circle article-img"
     src="{{ post.author.profile.image.url }}"
   />
   <div class="media-body">
     <div class="article-metadata">
-      <a class="mr-2" href="{% url 'user-posts' post.author.username 0 %}"
+      <a class="mr-2" href="{% url 'user-posts' post.author.username 1 %}"
         >{{ post.author }}</a
       >
       <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-      {% if forloop.counter == view.kwargs.postnum %}
-      <small class="text-muted">Selected</small>
-      {% endif %}
+      <small class="text-justify">Selected</small>
     </div>
     <h2>
       <a class="article-title" href="{% url 'post-detail' post.id %}"
@@ -28,4 +26,27 @@
     </a>
   </div>
 </article>
-{% endfor %}{% endblock content %}
+{% else %}
+<article class="media content-section">
+  <img
+    class="rounded-circle article-img"
+    src="{{ post.author.profile.image.url }}"
+  />
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="{% url 'user-posts' post.author.username 1 %}"
+        >{{ post.author }}</a
+      >
+      <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+    </div>
+    <h2>
+      <a class="article-title" href="{% url 'post-detail' post.id %}"
+        >{{ post.title }}</a
+      >
+    </h2>
+    <a href="{% url 'post-file' post.id %}" class="btn btn-primary btn-sm">
+      View File
+    </a>
+  </div>
+</article>
+{% endif %} {% endfor %}{% endblock content %}

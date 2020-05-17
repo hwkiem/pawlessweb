@@ -1,3 +1,50 @@
 {% extends "core/base.html" %} {% block content %}
-<h1>About Page</h1>
+<h3>Created by: Alexa Perlov, James Ryan and Henry Kiem</h3>
+<div>
+  <p>
+    PawlessPrint is a cloud-based printing server designed to replace the
+    existing PawPrint system used by Columbia University.
+    www.pawlessprint.herokuapp.com provides a secure interface for users to
+    upload files to collective print queue. PawlessPrint's file server is public
+    - this is to allow the PawlessPrint client to access files associated with
+    specific users exclusively by facial recognition (no login required).
+  </p>
+  <p>
+    The PawlessPrint client script uses an extensive visual grammar to navigate
+    this site. The client can only access a subset of specific routes, and uses
+    Python selenium webdrivers to connect visual commands to site commands. The use process is as follows:
+    <ol>
+        <li>
+            A user registers or logs in to www.pawlessprint.herokuapp.com
+        </li>
+        <li>
+            Here they are able to upload files. These files are placed in a secure AWS S3 bucket only accessible to www.pawlessprint.herokuapp.com
+        </li>
+        <li>
+            All file upload events - known as posts - are visible from the homepage. User pages display a filtered view of these posts. It is these pages that the PawlessPrint client accesses when looking for a particular user's print jobs.
+        </li>
+        <li>
+            Clicking on the "view file" button from any list or detailed post view will render the particular file in the browser. It is from this preview view that the PawlessPrint client is able to navigate over the document - scrolling, next or previous page. Most importantly it is from this view that PawlessPrint is able to PRINT the document to the selected printer.
+        </li>
+        <li>
+            When the PawlessPrint client is launched it navigates to the welcome page on:<br>www.pawlessprint.herokuapp.com/client<br>Available on this page are the provided hand gestures and user guide. 
+        </li>
+        <li>
+            When a user enters the camera's view the PawlessPrint client identifies their face and reroutes to the identified user's print job list automatically "selecting" the first job. This route is: <br>www.pawlessprint.herokuapp.com/user/[identified username]/1
+        </li>
+        <li>
+            From this view the user can provide a gesture to preview the document at the route:<br>www.pawlessprint.herokuapp.com/user/[identified username]/[selected doc number]<br>They can also provide gestures to select the next or the previous document. They can also print the selected document. All of these gestures are provided on the client welcome page.
+        </li>
+        <li>
+            At any time the user can provide a gesture to have the available gestures read allowed to them.
+        </li>
+        <li>
+            Upon printing a document the user is asked if they would like to delete the post (which also deletes the associated file). A simple nod confirms this, and the user is redirected back to their print job list view.
+        </li>
+        <li>
+            When the user is done they can simply leave the frame. This will prompt the PawlessPrint client to return to the client welcome page and await another user.
+        </li>
+    </ol>
+  </p>
+</div>
 {% endblock content %}
