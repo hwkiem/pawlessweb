@@ -12,11 +12,13 @@ urlpatterns = [
     path('', PostListView.as_view(), name='feed-home'),
     path('user/<str:username>/<int:postnum>/',
          UserPostListView.as_view(), name='user-posts'),
+    path('user/<str:username>/<int:postnum>/download/',
+         views.userpostdownload, name='user-post-download'),
+    path('user/<str:username>/<int:postnum>/view/',
+         views.userpostview, name='user-post-view'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('post/<int:pk>/fileview', views.fileview, name='post-file'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
     path('about/', views.about, name='feed-about'),
-    path('client/', views.about, name='feed-about'),
-
 ]
