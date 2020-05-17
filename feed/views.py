@@ -50,12 +50,6 @@ class UserPostListView(ListView):
             return super(UserPostListView, self).dispatch(request, *args, **kwargs)
 
 
-def userpostdownload(request, username, postnum):
-    user = get_object_or_404(User, username=username)
-    posts = Post.objects.filter(author=user).order_by('-date_posted')
-    curr = posts[postnum]
-    return redirect(curr.print_file.url)
-
 def userpostview(request, username, postnum):
     user = get_object_or_404(User, username=username)
     posts = Post.objects.filter(author=user).order_by('-date_posted')
@@ -79,6 +73,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        form.instance.title = form.instance.print_file.name
         return super().form_valid(form)
 
 

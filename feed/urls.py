@@ -12,8 +12,6 @@ urlpatterns = [
     path('', PostListView.as_view(), name='feed-home'),
     path('user/<str:username>/<int:postnum>/',
          UserPostListView.as_view(), name='user-posts'),
-    path('user/<str:username>/<int:postnum>/download/',
-         views.userpostdownload, name='user-post-download'),
     path('user/<str:username>/<int:postnum>/view/',
          views.userpostview, name='user-post-view'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),

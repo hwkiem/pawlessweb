@@ -21,14 +21,6 @@
       {% endif %}
     </div>
     <h2 class="article-title">{{ object.title }}</h2>
-    <p class="article-content">{{ object.content }}</p>
-    <a
-      href="{{ object.print_file.url }}"
-      class="btn btn-primary btn-sm"
-      target="_blank"
-    >
-      Download Document
-    </a>
     <a href="{% url 'post-file' object.id %}" class="btn btn-primary btn-sm">
       View File
     </a>

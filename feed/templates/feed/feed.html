@@ -16,14 +16,6 @@
         >{{ post.title }}</a
       >
     </h2>
-    <p class="article-content">{{ post.content }}</p>
-    <a
-      href="{{ post.print_file.url }}"
-      class="btn btn-primary btn-sm"
-      target="_blank"
-    >
-      Download
-    </a>
     <a href="{% url 'post-file' post.id %}" class="btn btn-primary btn-sm">
       View File
     </a>
