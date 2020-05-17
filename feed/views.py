@@ -51,20 +51,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-
-def postdownload(request, **kwargs):
-    cur_post = Post.objects.get(pk=kwargs['pk'])
-    response = cur_post.print_file.url
-    return redirect(response)
-        
-
-# def home(request):
-#     context = {
-#         'posts': Post.objects.all()
-#     }
-#     return render(request, 'feed/feed.html', context)
-
-
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = '/'
