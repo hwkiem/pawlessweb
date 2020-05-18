@@ -7,11 +7,9 @@ from users.models import Profile
 class faceFormView(FormView):
     template_name = 'core/face.html'
     form_class = FaceForm
-    success_url = 'feed-home'
+    success_url = '/client/'
 
     def form_valid(self, form):
         client = form.instance.face
-        for Profile in Profile.objects:
-            temp = Profile.image
-
         return super().form_valid(form)
+
