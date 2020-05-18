@@ -16,14 +16,18 @@
 </head>
 <body>
   <div id="wrapper">
-    {% if ext == '.pdf' or ext == '.docx' %}
+    {% if ext == '.pdf' %}
     <object src="{{file.url}}" width="100%" height="100%">
       <embed src="{{file.url}}" width="100%" height="100%" />
     </object>
-    {% elif ext == 'png' or ext == '.jpg' or ext == '.jpeg' %}
+    {% elif ext == '.png' or ext == '.jpg' or ext == '.jpeg' %}
     <img
       src="{{file.url}}"
-      style="image-orientation: from-image; max-width: 10vw; max-height: 100vh;"
+      style="
+        image-orientation: from-image;
+        max-width: 100zvw;
+        max-height: 100vh;
+      "
     />
     {% else %}
     <h1>File extension viewer not supported. Please download file.</h1>

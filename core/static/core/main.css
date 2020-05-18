@@ -66,6 +66,11 @@ a.article-title:hover {
   border-bottom: 1px solid #e3e3e3;
 }
 
+.article-footer {
+  padding-top: 2px;
+  border-top: 1px solid #e3e3e3;
+}
+
 .article-metadata a:hover {
   color: #333;
   text-decoration: none;

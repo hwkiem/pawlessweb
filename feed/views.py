@@ -53,7 +53,7 @@ class UserPostListView(ListView):
 def userpostview(request, username, postnum):
     user = get_object_or_404(User, username=username)
     posts = Post.objects.filter(author=user).order_by('-date_posted')
-    curr = posts[postnum]
+    curr = posts[postnum - 1]
     f = curr.print_file
     filename, filetype = os.path.splitext(f.name)
     return render(request, 'feed/file_view.html', {'file': f, 'title': 'preview', 'ext': filetype})
