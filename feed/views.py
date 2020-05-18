@@ -55,6 +55,8 @@ def userpostview(request, username, postnum):
     filename, filetype = os.path.splitext(f.name)
     return render(request, 'feed/file_view.html', {'file': f, 'title': 'preview', 'ext': filetype})
 
+def client(request):
+    return render(request, 'feed/client.html')
 
 class PostDetailView(DetailView):
     model = Post
