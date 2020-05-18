@@ -10,5 +10,4 @@ class faceFormView(FormView):
 
     def form_valid(self, form):
         print(form.instance.face.name)
-
         return super().form_valid(form)
