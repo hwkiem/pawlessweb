@@ -25,7 +25,6 @@ class PostListView(ListView):
 
 
 def curuser_redirectlist(request):
-    print(request.user.is_anonymous)
     if request.user.is_authenticated:
         cur_user = request.user
         return redirect('user-posts', cur_user.username, 0)
