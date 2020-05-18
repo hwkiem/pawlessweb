@@ -46,8 +46,6 @@ class UserPostListView(ListView):
         posts = self.get_queryset()
         if len(posts) < kwargs.get('postnum'):
             return redirect('user-posts', kwargs.get('username'), len(posts))
-        elif kwargs.get('postnum') < 1:
-            return redirect('user-posts', kwargs.get('username'), 1)
         else:
             return super(UserPostListView, self).dispatch(request, *args, **kwargs)
 
