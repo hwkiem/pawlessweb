@@ -16,9 +16,3 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         super().save()
-        img = self.image.url
-        enc = mock(img)  # JAMES
-        np_bytes = pickle.dumps(img)
-        np_base64 = base64.b64encode(np_bytes)
-        self.prof_enc = np_base64
-        super().save()

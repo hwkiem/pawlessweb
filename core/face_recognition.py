@@ -16,7 +16,7 @@ def mock(img):
     url = img
     response = request.urlopen(url).read()
 
-    soup= BeautifulSoup(response)
+    soup = BeautifulSoup(response)
     links = soup.find_all("a")
 
     url_list = links[0]['href']
@@ -24,3 +24,7 @@ def mock(img):
 
     request.urlretrieve(url_list, "face.jpg")
     return img
+
+
+def ndarr_from_imagefield(image_field):
+    return image_field

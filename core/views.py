@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from core.forms import FaceForm
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, CreateView
 from users.models import Profile
+from django.http import HttpResponseRedirect
 
 
 class faceFormView(FormView):
@@ -10,6 +11,7 @@ class faceFormView(FormView):
     success_url = '/client/'
 
     def form_valid(self, form):
+        super().form_valid(form)
         client = form.instance.face
-        return super().form_valid(form)
-
+        print(client.url)
+        return HttpResponseRedirect(client.url)
