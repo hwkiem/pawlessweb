@@ -17,13 +17,16 @@
           href="{% url 'post-delete' object.id %}"
           >Delete</a
         >
+        <a
+          href="{% url 'post-file' object.id %}"
+          class="btn btn-primary btn-sm"
+        >
+          View File
+        </a>
       </div>
       {% endif %}
     </div>
     <h2 class="article-title">{{ object.title }}</h2>
-    <a href="{% url 'post-file' object.id %}" class="btn btn-primary btn-sm">
-      View File
-    </a>
   </div>
 </article>
 {% endblock content %}
