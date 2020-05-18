@@ -1,0 +1,23 @@
+{% extends "core/base.html" %} {% block content %}
+      <div class="row">
+        <div class="col-md-8">
+            {% if loggedin == True %}
+            There are no files in your queue!
+            {% else %}
+            <h1>Welcome to PawlessPrint!</h1>
+            <br>
+            <h5>To login, step into the frame and hold up a five with both of your hands</h5>
+            <br>
+            <h5>Once you're logged in, to select the next file in your queue, hold up a five with your right hand</h5>
+            <br>
+            <h5>To move back up to the previous uploaded file, hold up a five with your left hand</h5>
+            <br>
+            <h5>To print out the displayed file, nod</h5>
+            <br>
+            <h5>To logout, hold up a fist with either of your hands</h5>
+            <br>
+            <h5>To hear the instructions, hold up two peace signs with your hands</h5>
+            {% endif %}
+        </div>
+      </div>
+{% endblock content %}
