@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
-from core.face_recognition import get_encoding
+from core.face_recognition import get_encoding, mock
+import base64
+import pickle
+from PIL import Image
 
 
 class Profile(models.Model):
@@ -13,7 +16,9 @@ class Profile(models.Model):
 
     def save(self, *args, **kwargs):
         super().save()
-        img = Image.open(self.image.path)
-        enc = get_encoding(img)  # JAMES
-        self.prof_enc = enc
+        img = self.image.url
+        enc = mock(img)  # JAMES
+        np_bytes = pickle.dumps(img)
+        np_base64 = base64.b64encode(np_bytes)
+        self.prof_enc = np_base64
         super().save()
