@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from core.forms import FaceForm
 from django.views.generic.edit import FormView
+from users.models import Profile
 
 
 class faceFormView(FormView):
@@ -9,5 +10,8 @@ class faceFormView(FormView):
     success_url = 'feed-home'
 
     def form_valid(self, form):
-        print(form.instance.face.name)
+        client = form.instance.face
+        for Profile in Profile.objects:
+            temp = Profile.image
+
         return super().form_valid(form)

@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AnonymousUser
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib.staticfiles import finders
@@ -25,8 +25,12 @@ class PostListView(ListView):
 
 
 def curuser_redirectlist(request):
-    cur_user = request.user
-    return redirect('user-posts', cur_user.username, 0)
+    print(request.user.is_anonymous)
+    if request.user.is_authenticated:
+        cur_user = request.user
+        return redirect('user-posts', cur_user.username, 0)
+    else:
+        return redirect('feed-client')
 
 
 class UserPostListView(ListView):
