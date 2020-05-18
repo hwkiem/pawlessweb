@@ -1,9 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from core.face_recognition import get_encoding, mock
-import base64
-import pickle
-from PIL import Image
 
 
 class Profile(models.Model):
