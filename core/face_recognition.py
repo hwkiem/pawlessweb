@@ -1,4 +1,7 @@
-def get_encoding(img):
-    return img
+import face_recognition
 
-# OVERWRITE
+def get_encoding(img):
+    
+    return face_recognition.face_encodings(img)
+
+
